@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的链接页</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .card { background: rgba(255,255,255,0.95); border-radius: 20px; padding: 40px 30px; max-width: 420px; width: 100%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+  .avatar { width: 96px; height: 96px; border-radius: 50%; background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; font-size: 44px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+  h1 { font-size: 24px; margin-bottom: 8px; }
+  .bio { color: #666; font-size: 14px; margin-bottom: 24px; }
+  .link { display: block; background: #f0f0f0; color: #333; text-decoration: none; padding: 14px; border-radius: 12px; margin-bottom: 12px; font-size: 16px; transition: all 0.2s; }
+  .link:hover { background: #667eea; color: #fff; transform: translateY(-2px); }
+  .meta { margin-top: 20px; color: #999; font-size: 13px; line-height: 1.8; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="avatar">逍</div>
+    <h1>科技自习室</h1>
+    <p class="bio">分享互联网知识 · 免费资源实测</p>
+    <!-- 把下面的四个链接换成你自己的 -->
+    <a class="link" href="https://www.youtube.com/@binzhao-wi6fs" target="_blank">📺 YouTube 频道</a>
+    <a class="link" href="https://t.me/kjzxschat" target="_blank">✈️ Telegram 频道</a>
+    <a class="link" href="https://github.com/kjzxs" target="_blank">💻 GitHub</a>
+    <a class="link" href="https://www.kxzxs.com/" target="_blank">📝 我的博客</a>
+    <div class="meta">
+      <div>🕐 服务器时间：<span id="time">加载中…</span></div>
+      <div>👀 本次访问人数：<span id="visits">加载中…</span></div>
+    </div>
+  </div>
+  <script>
+    fetch('/api/time').then(r => r.json()).then(d => {
+      document.getElementById('time').textContent = new Date(d.time).toLocaleString('zh-CN');
+    });
+    fetch('/api/visits').then(r => r.json()).then(d => {
+      document.getElementById('visits').textContent = d.visits;
+    });
+  </script>
+</body>
+</html>
